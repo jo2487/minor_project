@@ -5,15 +5,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // 데이터베이스 연결
+    // Connect to database
     $conn = new mysqli('localhost', 'root', '', 'exercise_platform');
 
-    // 연결 확인
+    // Confirm database
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // 사용자 인증
+    // User Authentication
     $sql = "SELECT * FROM users WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
